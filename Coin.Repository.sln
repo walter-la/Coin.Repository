@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coin.EFCore.Repository", "Coin.EFCore.Repository\Coin.EFCore.Repository.csproj", "{57116A99-2693-41FC-85EB-D9A66E55EE83}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coin.EFCore.Repository.UnitTests", "Coin.EFCore.Repository.UnitTests\Coin.EFCore.Repository.UnitTests.csproj", "{F8B04BB9-2768-4BA8-ABCF-A8ED530790E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coin.Repository", "Coin.Repository\Coin.Repository.csproj", "{07B782A6-65FB-4A8D-9C27-43A94496A85C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{57116A99-2693-41FC-85EB-D9A66E55EE83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57116A99-2693-41FC-85EB-D9A66E55EE83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57116A99-2693-41FC-85EB-D9A66E55EE83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57116A99-2693-41FC-85EB-D9A66E55EE83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8B04BB9-2768-4BA8-ABCF-A8ED530790E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8B04BB9-2768-4BA8-ABCF-A8ED530790E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8B04BB9-2768-4BA8-ABCF-A8ED530790E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8B04BB9-2768-4BA8-ABCF-A8ED530790E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07B782A6-65FB-4A8D-9C27-43A94496A85C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07B782A6-65FB-4A8D-9C27-43A94496A85C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07B782A6-65FB-4A8D-9C27-43A94496A85C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07B782A6-65FB-4A8D-9C27-43A94496A85C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DE4BC074-CFAC-4A0F-9C7F-51C2322018C3}
+	EndGlobalSection
+EndGlobal

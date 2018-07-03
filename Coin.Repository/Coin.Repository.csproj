@@ -4,7 +4,7 @@
     <TargetFramework>netstandard1.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>2.1.0-preview1-final</Version>
+    <Version>2.1.0</Version>
   </PropertyGroup>
 
 </Project>

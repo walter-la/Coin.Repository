@@ -6,13 +6,15 @@ using System.Text;
 using Dapper;
 using Coin.Repository;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace Coin.EFCore.Repository
 {
-	public class Repository : IRepository
+	public class RepositoryBase<TDbContext> : IRepository
+		where TDbContext : DbContext
 	{
-		protected readonly DbContext _db;
-		public Repository(DbContext db)
+		protected readonly TDbContext _db;
+		public RepositoryBase(TDbContext db)
 		{
 			_db = db;
 		}
@@ -28,13 +30,13 @@ namespace Coin.EFCore.Repository
 			return conn.Execute(sql, param, transaction);
 		}
 
-		protected virtual int SaveChanges()
+		public virtual int SaveChanges()
 		{
 			return _db.SaveChanges();
 		}
-		protected virtual Task<int> SaveChangesAsync()
+		public virtual Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
 		{
-			return _db.SaveChangesAsync();
+			return _db.SaveChangesAsync(cancellationToken);
 		}
 
 	}

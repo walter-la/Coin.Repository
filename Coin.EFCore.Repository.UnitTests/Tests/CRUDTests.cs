@@ -17,7 +17,7 @@ namespace Coin.EFCore.Repository.UnitTests.Tests
 			{
 				using (var db = testDB.CreateDbContext())
 				{
-					var repo = new Repository<Sample>(db);
+					var repo = new RepositoryBase<SampleDbContext, Sample>(db);
 
 					var sample = new Sample
 					{
@@ -29,7 +29,7 @@ namespace Coin.EFCore.Repository.UnitTests.Tests
 
 				using (var db = testDB.CreateDbContext())
 				{
-					var repo = new Repository<Sample>(db);
+					var repo = new RepositoryBase<SampleDbContext, Sample>(db);
 
 					var samples = repo.GetAll();
 					var sample = samples.FirstOrDefault();
@@ -42,7 +42,7 @@ namespace Coin.EFCore.Repository.UnitTests.Tests
 
 				using (var db = testDB.CreateDbContext())
 				{
-					var repo = new Repository<Sample>(db);
+					var repo = new RepositoryBase<SampleDbContext, Sample>(db);
 
 					var sample = repo.Get(x => x.SampleName == "DoNet");
 					Assert.True(sample != null);
@@ -62,7 +62,7 @@ namespace Coin.EFCore.Repository.UnitTests.Tests
 			{
 				using (var db = testDB.CreateDbContext())
 				{
-					var repo = new Repository<Sample>(db);
+					var repo = new RepositoryBase<SampleDbContext, Sample>(db);
 
 					var sample = new Sample
 					{
@@ -74,7 +74,7 @@ namespace Coin.EFCore.Repository.UnitTests.Tests
 
 				using (var db = testDB.CreateDbContext())
 				{
-					var repo = new Repository<Sample>(db);
+					var repo = new RepositoryBase<SampleDbContext, Sample>(db);
 
 					var samples = await repo.GetAllAsync();
 					var sample = samples.FirstOrDefault();
@@ -87,7 +87,7 @@ namespace Coin.EFCore.Repository.UnitTests.Tests
 
 				using (var db = testDB.CreateDbContext())
 				{
-					var repo = new Repository<Sample>(db);
+					var repo = new RepositoryBase<SampleDbContext, Sample>(db);
 
 					var sample = await repo.GetAsync(x => x.SampleName == "DoNet");
 					Assert.True(sample != null);

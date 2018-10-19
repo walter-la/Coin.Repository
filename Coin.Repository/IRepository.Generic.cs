@@ -14,32 +14,32 @@ namespace Coin.Repository
 		Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
 
 		List<TEntity> GetAll();
-		Task<List<TEntity>> GetAllAsync(CancellationToken cancellationToken);
+		Task<List<TEntity>> GetAllAsync(CancellationToken cancellationToken = default(CancellationToken));
 
 		IQueryable<TEntity> SearchFor(Expression<Func<TEntity, bool>> predicate);
 
 		bool Exists(Expression<Func<TEntity, bool>> predicate);
-		Task<bool> ExistsAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
+		Task<bool> ExistsAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default(CancellationToken));
 
 		void Insert(TEntity entity);
-		Task InsertAsync(TEntity entity);
+		Task InsertAsync(TEntity entity, CancellationToken cancellationToken = default(CancellationToken));
 
 		void Update(TEntity entity);
-		Task UpdateAsync(TEntity entity);
+		Task UpdateAsync(TEntity entity, CancellationToken cancellationToken = default(CancellationToken));
 
 		void Delete(TEntity entity);
-		Task DeleteAsync(TEntity entity);
+		Task DeleteAsync(TEntity entity, CancellationToken cancellationToken = default(CancellationToken));
 
 		void Delete(IEnumerable<TEntity> entities);
-		Task DeleteAsync(IEnumerable<TEntity> entities);
+		Task DeleteAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default(CancellationToken));
 
 		void BulkInsert(IList<TEntity> entities);
-		Task BulkInsertAsync(IList<TEntity> entities);
+		Task BulkInsertAsync(IList<TEntity> entities, CancellationToken cancellationToken = default(CancellationToken));
 
 		void BulkUpdate(IList<TEntity> entities);
-		Task BulkUpdateAsync(IList<TEntity> entities);
+		Task BulkUpdateAsync(IList<TEntity> entities, CancellationToken cancellationToken = default(CancellationToken));
 
 		void BulkInsertOrUpdate(IList<TEntity> entities);
-		Task BulkInsertOrUpdateAsync(IList<TEntity> entities);
+		Task BulkInsertOrUpdateAsync(IList<TEntity> entities, CancellationToken cancellationToken = default(CancellationToken));
 	}
 }

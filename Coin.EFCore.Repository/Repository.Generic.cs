@@ -11,12 +11,13 @@ using System.Threading.Tasks;
 
 namespace Coin.EFCore.Repository
 {
-	public class Repository<TEntity> : Repository, IRepository<TEntity>
+	public class RepositoryBase<TDbContext, TEntity> : RepositoryBase<TDbContext>, IRepository, IRepository<TEntity>
+		where TDbContext : DbContext
 		where TEntity : class
 	{
 		protected readonly DbSet<TEntity> _set;
 
-		public Repository(DbContext db) : base(db)
+		public RepositoryBase(TDbContext db) : base(db)
 		{
 			_set = db.Set<TEntity>();
 		}
@@ -25,7 +26,9 @@ namespace Coin.EFCore.Repository
 		{
 			return _set.FirstOrDefault(predicate);
 		}
-		public Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default(CancellationToken))
+		public virtual Task<TEntity> GetAsync(
+			Expression<Func<TEntity, bool>> predicate, 
+			CancellationToken cancellationToken = default(CancellationToken))
 		{
 			return _set.FirstOrDefaultAsync(predicate, cancellationToken);
 		}
@@ -49,7 +52,9 @@ namespace Coin.EFCore.Repository
 		{
 			return _set.Any(predicate);
 		}
-		public Task<bool> ExistsAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default(CancellationToken))
+		public Task<bool> ExistsAsync(
+			Expression<Func<TEntity, bool>> predicate, 
+			CancellationToken cancellationToken = default(CancellationToken))
 		{
 			return _set.AnyAsync(cancellationToken);
 		}
@@ -60,7 +65,7 @@ namespace Coin.EFCore.Repository
 			_set.Add(entity);
 			SaveChanges();
 		}
-		public Task InsertAsync(TEntity entity)
+		public Task InsertAsync(TEntity entity, CancellationToken cancellationToken = default(CancellationToken))
 		{
 			_set.Add(entity);
 			return SaveChangesAsync();
@@ -75,7 +80,7 @@ namespace Coin.EFCore.Repository
 			}
 			SaveChanges();
 		}
-		public Task UpdateAsync(TEntity entity)
+		public Task UpdateAsync(TEntity entity, CancellationToken cancellationToken = default(CancellationToken))
 		{
 			var entry = _db.Entry(entity);
 			if (entry.State != EntityState.Modified)
@@ -90,7 +95,7 @@ namespace Coin.EFCore.Repository
 			_set.Remove(entity);
 			SaveChanges();
 		}
-		public Task DeleteAsync(TEntity entity)
+		public Task DeleteAsync(TEntity entity, CancellationToken cancellationToken = default(CancellationToken))
 		{
 			_set.Remove(entity);
 			return SaveChangesAsync();
@@ -101,7 +106,7 @@ namespace Coin.EFCore.Repository
 			_set.RemoveRange(entities);
 			SaveChanges();
 		}
-		public Task DeleteAsync(IEnumerable<TEntity> entities)
+		public Task DeleteAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default(CancellationToken))
 		{
 			_set.RemoveRange(entities);
 			return SaveChangesAsync();
@@ -111,7 +116,7 @@ namespace Coin.EFCore.Repository
 		{
 			_db.BulkInsert(entities);
 		}
-		public Task BulkInsertAsync(IList<TEntity> entities)
+		public Task BulkInsertAsync(IList<TEntity> entities, CancellationToken cancellationToken = default(CancellationToken))
 		{
 			return _db.BulkInsertAsync(entities);
 		}
@@ -120,7 +125,7 @@ namespace Coin.EFCore.Repository
 		{
 			_db.BulkUpdate(entities);
 		}
-		public Task BulkUpdateAsync(IList<TEntity> entities)
+		public Task BulkUpdateAsync(IList<TEntity> entities, CancellationToken cancellationToken = default(CancellationToken))
 		{
 			return _db.BulkInsertOrUpdateAsync(entities);
 		}
@@ -129,7 +134,7 @@ namespace Coin.EFCore.Repository
 		{
 			_db.BulkInsertOrUpdate(entities);
 		}
-		public Task BulkInsertOrUpdateAsync(IList<TEntity> entities)
+		public Task BulkInsertOrUpdateAsync(IList<TEntity> entities, CancellationToken cancellationToken = default(CancellationToken))
 		{
 			return _db.BulkInsertOrUpdateAsync(entities);
 		}

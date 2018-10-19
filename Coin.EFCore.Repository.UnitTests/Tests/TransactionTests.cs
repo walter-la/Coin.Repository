@@ -16,7 +16,7 @@ namespace Coin.EFCore.Repository.UnitTests.Tests
 			{
 				using (var db = testDB.CreateDbContext())
 				{
-					var repo = new Repository<Sample>(db);
+					var repo = new RepositoryBase<SampleDbContext, Sample>(db);
 
 					var sample = new Sample
 					{
@@ -38,7 +38,7 @@ namespace Coin.EFCore.Repository.UnitTests.Tests
 
 				using (var db = testDB.CreateDbContext())
 				{
-					var repo = new Repository<Sample>(db);
+					var repo = new RepositoryBase<SampleDbContext, Sample>(db);
 					var dbItem = repo.GetAll().SingleOrDefault();
 					Assert.True(dbItem?.SampleName == "DotNet", "交易完成後，應該有資料");
 				}
@@ -52,7 +52,7 @@ namespace Coin.EFCore.Repository.UnitTests.Tests
 			{
 				using (var db = testDB.CreateDbContext())
 				{
-					var repo = new Repository<Sample>(db);
+					var repo = new RepositoryBase<SampleDbContext, Sample>(db);
 
 					var sample = new Sample
 					{
@@ -70,7 +70,7 @@ namespace Coin.EFCore.Repository.UnitTests.Tests
 
 				using (var db = testDB.CreateDbContext())
 				{
-					var repo = new Repository<Sample>(db);
+					var repo = new RepositoryBase<SampleDbContext, Sample>(db);
 
 					var outOfTransactionCount = repo.GetAll().Count();
 					Assert.True(outOfTransactionCount == 0, "交易沒commit，不應該有資料");

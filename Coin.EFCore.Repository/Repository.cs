@@ -24,16 +24,35 @@ namespace Coin.EFCore.Repository
 			return _db.Database.GetDbConnection();
 		}
 
+		protected IEnumerable<TEntity> Query<TEntity>(string sql, object param = null, IDbTransaction transaction = null)
+		{
+			var conn = GetConnection();
+			return conn.Query<TEntity>(sql, param, transaction);
+		}
+
+		protected Task<IEnumerable<TEntity>> QueryAsync<TEntity>(string sql, object param = null, IDbTransaction transaction = null)
+		{
+			var conn = GetConnection();
+			return conn.QueryAsync<TEntity>(sql, param, transaction);
+		}
+
 		protected virtual int Execute(string sql, object param = null, IDbTransaction transaction = null)
 		{
 			var conn = GetConnection();
 			return conn.Execute(sql, param, transaction);
 		}
 
+		protected virtual Task<int> ExecuteAsync(string sql, object param = null, IDbTransaction transaction = null)
+		{
+			var conn = GetConnection();
+			return conn.ExecuteAsync(sql, param, transaction);
+		}
+
 		public virtual int SaveChanges()
 		{
 			return _db.SaveChanges();
 		}
+
 		public virtual Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
 		{
 			return _db.SaveChangesAsync(cancellationToken);

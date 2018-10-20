@@ -22,41 +22,28 @@ namespace Coin.EFCore.Repository
 		}
 
 		public virtual TEntity Get(Expression<Func<TEntity, bool>> predicate)
-		{
-			return _set.FirstOrDefault(predicate);
-		}
+			=> _set.FirstOrDefault(predicate);
+
 		public virtual Task<TEntity> GetAsync(
 			Expression<Func<TEntity, bool>> predicate,
 			CancellationToken cancellationToken = default(CancellationToken))
-		{
-			return _set.FirstOrDefaultAsync(predicate, cancellationToken);
-		}
+			=> _set.FirstOrDefaultAsync(predicate, cancellationToken);
 
-		public virtual List<TEntity> GetAll()
-		{
-			return _set.ToList();
-		}
+		public virtual List<TEntity> GetAll() =>_set.ToList();
+
 		public Task<List<TEntity>> GetAllAsync(CancellationToken cancellationToken = default(CancellationToken))
-		{
-			return _set.ToListAsync(cancellationToken);
-		}
+			=> _set.ToListAsync(cancellationToken);
 
 		public virtual IQueryable<TEntity> SearchFor(Expression<Func<TEntity, bool>> predicate)
-		{
-			return _set.Where(predicate);
-		}
-		
+			=> _set.Where(predicate);
+
 		public virtual bool Exists(Expression<Func<TEntity, bool>> predicate)
-		{
-			return _set.Any(predicate);
-		}
+			=> _set.Any(predicate);
 
 		public Task<bool> ExistsAsync(
 			Expression<Func<TEntity, bool>> predicate,
 			CancellationToken cancellationToken = default(CancellationToken))
-		{
-			return _set.AnyAsync(cancellationToken);
-		}
+			=> _set.AnyAsync(cancellationToken);
 
 		public virtual void Insert(TEntity entity)
 			=> _db.InsertSave(entity);

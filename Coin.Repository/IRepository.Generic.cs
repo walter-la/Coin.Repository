@@ -34,12 +34,12 @@ namespace Coin.Repository
 		Task DeleteAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default(CancellationToken));
 
 		void BulkInsert(IList<TEntity> entities);
-		Task BulkInsertAsync(IList<TEntity> entities, CancellationToken cancellationToken = default(CancellationToken));
+		Task BulkInsertAsync(IList<TEntity> entities);
 
 		void BulkUpdate(IList<TEntity> entities);
-		Task BulkUpdateAsync(IList<TEntity> entities, CancellationToken cancellationToken = default(CancellationToken));
+		Task BulkUpdateAsync(IList<TEntity> entities);
 
 		void BulkInsertOrUpdate(IList<TEntity> entities);
-		Task BulkInsertOrUpdateAsync(IList<TEntity> entities, CancellationToken cancellationToken = default(CancellationToken));
+		Task BulkInsertOrUpdateAsync(IList<TEntity> entities);
 	}
 }

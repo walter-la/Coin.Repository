@@ -1,5 +1,4 @@
 ﻿using Coin.Repository;
-using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -27,7 +26,7 @@ namespace Coin.EFCore.Repository
 			return _set.FirstOrDefault(predicate);
 		}
 		public virtual Task<TEntity> GetAsync(
-			Expression<Func<TEntity, bool>> predicate, 
+			Expression<Func<TEntity, bool>> predicate,
 			CancellationToken cancellationToken = default(CancellationToken))
 		{
 			return _set.FirstOrDefaultAsync(predicate, cancellationToken);
@@ -46,98 +45,60 @@ namespace Coin.EFCore.Repository
 		{
 			return _set.Where(predicate);
 		}
-
-
+		
 		public virtual bool Exists(Expression<Func<TEntity, bool>> predicate)
 		{
 			return _set.Any(predicate);
 		}
+
 		public Task<bool> ExistsAsync(
-			Expression<Func<TEntity, bool>> predicate, 
+			Expression<Func<TEntity, bool>> predicate,
 			CancellationToken cancellationToken = default(CancellationToken))
 		{
 			return _set.AnyAsync(cancellationToken);
 		}
 
-
 		public virtual void Insert(TEntity entity)
-		{
-			_set.Add(entity);
-			SaveChanges();
-		}
+			=> _db.InsertSave(entity);
+
 		public Task InsertAsync(TEntity entity, CancellationToken cancellationToken = default(CancellationToken))
-		{
-			_set.Add(entity);
-			return SaveChangesAsync();
-		}
+			=> _db.InsertSaveAsync(entity, cancellationToken);
 
 		public virtual void Update(TEntity entity)
-		{
-			var entry = _db.Entry(entity);
-			if (entry.State != EntityState.Modified)
-			{
-				_set.Update(entity);
-			}
-			SaveChanges();
-		}
+			=> _db.UpdateSave(entity);
+
 		public Task UpdateAsync(TEntity entity, CancellationToken cancellationToken = default(CancellationToken))
-		{
-			var entry = _db.Entry(entity);
-			if (entry.State != EntityState.Modified)
-			{
-				_set.Update(entity);
-			}
-			return SaveChangesAsync();
-		}
+			=> _db.UpdateSaveAsync(entity, cancellationToken);
 
 		public virtual void Delete(TEntity entity)
-		{
-			_set.Remove(entity);
-			SaveChanges();
-		}
+			=> _db.DeleteSave(entity);
+
 		public Task DeleteAsync(TEntity entity, CancellationToken cancellationToken = default(CancellationToken))
-		{
-			_set.Remove(entity);
-			return SaveChangesAsync();
-		}
+			=> _db.DeleteSaveAsync(entity, cancellationToken);
 
 		public virtual void Delete(IEnumerable<TEntity> entities)
-		{
-			_set.RemoveRange(entities);
-			SaveChanges();
-		}
+			=> _db.DeleteSave(entities);
+
 		public Task DeleteAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default(CancellationToken))
-		{
-			_set.RemoveRange(entities);
-			return SaveChangesAsync();
-		}
+			=> _db.DeleteSaveAsync(entities, cancellationToken);
 
 		public virtual void BulkInsert(IList<TEntity> entities)
-		{
-			_db.BulkInsert(entities);
-		}
-		public Task BulkInsertAsync(IList<TEntity> entities, CancellationToken cancellationToken = default(CancellationToken))
-		{
-			return _db.BulkInsertAsync(entities);
-		}
+			=> _db.BulkInsertSave(entities);
+
+		public Task BulkInsertAsync(IList<TEntity> entities)
+			=> _db.BulkInsertSaveAsync(entities);
 
 		public virtual void BulkUpdate(IList<TEntity> entities)
-		{
-			_db.BulkUpdate(entities);
-		}
-		public Task BulkUpdateAsync(IList<TEntity> entities, CancellationToken cancellationToken = default(CancellationToken))
-		{
-			return _db.BulkInsertOrUpdateAsync(entities);
-		}
+			=> _db.BulkUpdateSave(entities);
+
+		public Task BulkUpdateAsync(IList<TEntity> entities)
+			=> _db.BulkInsertOrUpdateSaveAsync(entities);
 
 		public virtual void BulkInsertOrUpdate(IList<TEntity> entities)
-		{
-			_db.BulkInsertOrUpdate(entities);
-		}
-		public Task BulkInsertOrUpdateAsync(IList<TEntity> entities, CancellationToken cancellationToken = default(CancellationToken))
-		{
-			return _db.BulkInsertOrUpdateAsync(entities);
-		}
+			=> _db.BulkInsertOrUpdateSave(entities);
+
+		public Task BulkInsertOrUpdateAsync(IList<TEntity> entities)
+			=> _db.BulkInsertOrUpdateSaveAsync(entities);
 
 	}
 }

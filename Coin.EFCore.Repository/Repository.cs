@@ -24,13 +24,13 @@ namespace Coin.EFCore.Repository
 			return _db.Database.GetDbConnection();
 		}
 
-		protected IEnumerable<TEntity> Query<TEntity>(string sql, object param = null, IDbTransaction transaction = null)
+		protected virtual IEnumerable<TEntity> Query<TEntity>(string sql, object param = null, IDbTransaction transaction = null)
 		{
 			var conn = GetConnection();
 			return conn.Query<TEntity>(sql, param, transaction);
 		}
 
-		protected Task<IEnumerable<TEntity>> QueryAsync<TEntity>(string sql, object param = null, IDbTransaction transaction = null)
+		protected virtual Task<IEnumerable<TEntity>> QueryAsync<TEntity>(string sql, object param = null, IDbTransaction transaction = null)
 		{
 			var conn = GetConnection();
 			return conn.QueryAsync<TEntity>(sql, param, transaction);

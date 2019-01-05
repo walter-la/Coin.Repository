@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coin.EFCore.Repository", "C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coin.EFCore.Repository.UnitTests", "Coin.EFCore.Repository.UnitTests\Coin.EFCore.Repository.UnitTests.csproj", "{F8B04BB9-2768-4BA8-ABCF-A8ED530790E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coin.Repository", "Coin.Repository\Coin.Repository.csproj", "{07B782A6-65FB-4A8D-9C27-43A94496A85C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coin.Repository", "Coin.Repository\Coin.Repository.csproj", "{07B782A6-65FB-4A8D-9C27-43A94496A85C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{677ACA3F-7051-4EAF-B341-E19AF404B9C3}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,4 +40,3 @@ Global
 		SolutionGuid = {DE4BC074-CFAC-4A0F-9C7F-51C2322018C3}
 	EndGlobalSection
 EndGlobal
-

@@ -11,7 +11,7 @@ namespace Coin.Repository
 	public interface IRepository<TEntity> : IRepository
 	{
 		TEntity Get(Expression<Func<TEntity, bool>> predicate);
-		Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
+		Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default(CancellationToken));
 
 		List<TEntity> GetAll();
 		Task<List<TEntity>> GetAllAsync(CancellationToken cancellationToken = default(CancellationToken));

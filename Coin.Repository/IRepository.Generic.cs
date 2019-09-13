@@ -16,7 +16,7 @@ namespace Coin.Repository
 		List<TEntity> GetAll();
 		Task<List<TEntity>> GetAllAsync(CancellationToken cancellationToken = default(CancellationToken));
 
-		IQueryable<TEntity> SearchFor(Expression<Func<TEntity, bool>> predicate);
+		IQueryable<TEntity> Filter(Expression<Func<TEntity, bool>> predicate);
 
 		bool Exists(Expression<Func<TEntity, bool>> predicate);
 		Task<bool> ExistsAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default(CancellationToken));

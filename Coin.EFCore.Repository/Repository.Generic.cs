@@ -34,7 +34,7 @@ namespace Coin.EFCore.Repository
 		public virtual Task<List<TEntity>> GetAllAsync(CancellationToken cancellationToken = default(CancellationToken))
 			=> _set.ToListAsync(cancellationToken);
 
-		public virtual IQueryable<TEntity> SearchFor(Expression<Func<TEntity, bool>> predicate)
+		public virtual IQueryable<TEntity> Filter(Expression<Func<TEntity, bool>> predicate)
 			=> _set.Where(predicate);
 
 		public virtual bool Exists(Expression<Func<TEntity, bool>> predicate)

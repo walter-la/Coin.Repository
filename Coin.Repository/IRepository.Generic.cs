@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EFCore.BulkExtensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -33,13 +34,13 @@ namespace Coin.Repository
 		void Delete(IEnumerable<TEntity> entities);
 		Task DeleteAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default(CancellationToken));
 
-		void BulkInsert(IList<TEntity> entities);
-		Task BulkInsertAsync(IList<TEntity> entities);
+		void BulkInsert(IList<TEntity> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null);
+		Task BulkInsertAsync(IList<TEntity> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null);
 
-		void BulkUpdate(IList<TEntity> entities);
-		Task BulkUpdateAsync(IList<TEntity> entities);
+		void BulkUpdate(IList<TEntity> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null);
+		Task BulkUpdateAsync(IList<TEntity> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null);
 
-		void BulkInsertOrUpdate(IList<TEntity> entities);
-		Task BulkInsertOrUpdateAsync(IList<TEntity> entities);
+		void BulkInsertOrUpdate(IList<TEntity> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null);
+		Task BulkInsertOrUpdateAsync(IList<TEntity> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null);
 	}
 }
